@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>El Gran Festival del Calcetín Perdido 2026</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+      color: #ffeb3b;
+      font-family: "Comic Sans MS", cursive;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 5.5vw;
+      margin: 40px 0;
+      text-shadow: 0 0 30px #ff00aa, 0 0 60px #00ffff;
+      animation: titileo 3s infinite alternate;
+    }
+    .calcetin {
+      position: absolute;
+      font-size: 120px;
+      animation: flotar 12s infinite linear;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes flotar {
+      0%   { transform: translate(-200px, 100vh) rotate(0deg); }
+      100% { transform: translate(120vw, -300px) rotate(1080deg); }
+    }
+    @keyframes titileo {
+      0% { opacity: 0.4; text-shadow: 0 0 10px #ff00aa; }
+      100% { opacity: 1; text-shadow: 0 0 80px #00ffff, 0 0 120px #ff00aa; }
+    }
+    .frase {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: 3px dashed #39ff14;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¡BIENVENIDOS AL<br>FESTIVAL DEL CALCETÍN PERDIDO!</h1>
+
+  <div class="calcetin" style="left:10%; animation-delay:0s;">🧦</div>
+  <div class="calcetin" style="left:25%; animation-delay:2.3s; font-size:180px;">🧦</div>
+  <div class="calcetin" style="left:40%; animation-delay:4.1s;">🧦</div>
+  <div class="calcetin" style="left:55%; animation-delay:1.7s; transform:scaleX(-1);">🧦</div>
+  <div class="calcetin" style="left:70%; animation-delay:5.9s;">🧦</div>
+  <div class="calcetin" style="left:85%; animation-delay:3.4s; font-size:90px;">🧦</div>
+
+  <div class="frase">Aquí desaparecen más calcetines que promesas de político en campaña</div>
+
+  <script>
+    setInterval(() => {
+      let c = document.createElement("div");
+      c.className = "calcetin";
+      c.textContent = "🧦";
+      c.style.left = Math.random()*100 + "%";
+      c.style.animationDelay = Math.random()*8 + "s";
+      c.style.fontSize = (60 + Math.random()*180) + "px";
+      document.body.appendChild(c);
+      
+      setTimeout(() => c.remove(), 14000);
+    }, 400);
+  </script>
+
+</body>
+</html>
