@@ -34,7 +34,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="shrink-0 flex items-center gap-2">
-              <img className="w-11" src="/src/public/qr-logo.png" alt="logo" />
+              <img className="w-11" src="/qr-logo.png" alt="logo" />
               <span className="font-bold text-xl text-[#1c1c1c]">NanoQR</span>
             </div>
             <nav className="flex gap-4 items-center">
