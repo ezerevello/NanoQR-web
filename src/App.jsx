@@ -2,14 +2,39 @@ import React, { useState } from 'react';
 
 function App() {
   const [url, setUrl] = useState('');
+  const [size, setSize] = useState(256);
+  const [recoverLevel, setRecoverLevel] = useState('medium');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      input: url || 'example.com',
+      size: size,
+      recoverLevel: recoverLevel
+    };
+
+    try {
+      const response = await fetch('https://identifies-excerpt-followed-mailman.trycloudflare.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+      // Handle response if needed
+      console.log('Response status:', response.status);
+    } catch (error) {
+      console.error('Error generating QR:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-inter text-[#1c1c1c]">
       <header className="bg-white shadow-[0_1px_3px_0_rgba(0,0,0,0.05)] border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <img className="w-11" src="../public/qr-logo.png" alt="logo" />
+            <div className="shrink-0 flex items-center gap-2">
+              <img className="w-11" src="/src/public/qr-logo.png" alt="logo" />
               <span className="font-bold text-xl text-[#1c1c1c]">NanoQR</span>
             </div>
             <nav className="flex gap-4 items-center">
@@ -45,12 +70,41 @@ function App() {
               />
               <button
                 type="submit"
-                className="ml-2 px-6 py-2.5 font-semibold rounded-full text-white bg-emerald-600 shadow-sm hover:bg-emerald-600 focus:outline-none transition-colors text-sm whitespace-nowrap"
-                onClick={(e) => { e.preventDefault(); alert(`Generating QR for: ${url || 'example.com'}`) }}
+                className="ml-2 px-6 py-2.5 font-semibold rounded-full text-white bg-emerald-600 shadow-sm focus:outline-none text-sm whitespace-nowrap cursor-pointer transition-all duration-200 ease-out hover:bg-emerald-700 hover:scale-105 hover:shadow-lg"
+                onClick={handleSubmit}
               >
                 Generate
               </button>
             </form>
+
+            <div className="mt-6 flex flex-wrap gap-6 justify-center items-center text-gray-600">
+              <div className="flex items-center gap-2">
+                <label htmlFor="size" className="text-sm font-medium">Size (px):</label>
+                <input
+                  id="size"
+                  type="number"
+                  min="41"
+                  max="2048"
+                  value={size}
+                  onChange={(e) => setSize(Number(e.target.value))}
+                  className="w-20 px-3 py-1.5 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-400 text-center transition-all text-[#1c1c1c] shadow-sm"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <label htmlFor="recoverLevel" className="text-sm font-medium">Error Correction:</label>
+                <select
+                  id="recoverLevel"
+                  value={recoverLevel}
+                  onChange={(e) => setRecoverLevel(e.target.value)}
+                  className="px-3 py-1.5 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-400 transition-all text-[#1c1c1c] shadow-sm cursor-pointer"
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="highest">Highest</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </main>
