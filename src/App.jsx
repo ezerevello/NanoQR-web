@@ -8,13 +8,13 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      input: url || 'example.com',
+      input: url,
       size: size,
       recoverLevel: recoverLevel
     };
 
     try {
-      const response = await fetch('https://identifies-excerpt-followed-mailman.trycloudflare.com', {
+      const response = await fetch('https://identifies-excerpt-followed-mailman.trycloudflare.com/api/qr', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
