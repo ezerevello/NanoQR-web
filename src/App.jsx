@@ -4,6 +4,7 @@ function App() {
   const [url, setUrl] = useState('');
   const [size, setSize] = useState(256);
   const [recoverLevel, setRecoverLevel] = useState('medium');
+  const [qrData, setQrData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +22,14 @@ function App() {
         },
         body: JSON.stringify(payload)
       });
-      // Handle response if needed
-      console.log('Response status:', response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setQrData(data);
+      console.log('Response:', data);
     } catch (error) {
       console.error('Error generating QR:', error);
     }
