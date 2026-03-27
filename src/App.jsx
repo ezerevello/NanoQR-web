@@ -112,6 +112,28 @@ function App() {
                 </select>
               </div>
             </div>
+
+            {qrData && qrData.status === 'success' && (
+              <div className="mt-10 flex flex-col items-center animate-fade-in-up transition-all duration-500">
+                <div className="p-4 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.16)] transition-shadow">
+                  <img
+                    src={`data:image/png;base64,${qrData.qr}`}
+                    alt="Generated QR Code"
+                    className="max-w-full h-auto rounded-xl"
+                  />
+                </div>
+                <div className="mt-6 flex gap-4">
+                  <a
+                    href={`data:image/png;base64,${qrData.qr}`}
+                    download="qrcode.png"
+                    className="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all shadow-sm flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    Download PNG
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>
