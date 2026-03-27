@@ -54,18 +54,18 @@ function App() {
         </div>
       </header>
 
-      <main className="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-emerald-50/50 via-white to-white">
+      <main className={`flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-emerald-50/50 via-white to-white transition-all duration-700 ease-in-out ${qrData && qrData.status === 'success' ? 'py-6' : 'py-16'}`}>
         <div className="max-w-2xl mx-auto text-center w-full">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className={`font-extrabold tracking-tight transition-all duration-700 ease-in-out ${qrData && qrData.status === 'success' ? 'text-3xl sm:text-4xl md:text-5xl' : 'text-5xl sm:text-6xl md:text-7xl'}`}>
             <span className="block text-[#1c1c1c]">Create QR Codes</span>
             <span className="block text-emerald-600">with your own API</span>
           </h1>
-          <p className="mt-5 max-w-lg mx-auto text-base sm:text-lg text-gray-600">
+          <p className={`mx-auto text-gray-600 transition-all duration-700 ease-in-out ${qrData && qrData.status === 'success' ? 'mt-3 text-sm sm:text-base max-w-md' : 'mt-5 max-w-lg text-base sm:text-lg'}`}>
             A beautiful frontend for a headless QR API. <br></br>
             Generate codes instantly, or check out the GitHub repo to run your own instance.
           </p>
 
-          <div className="mt-10 mx-auto max-w-lg">
+          <div className={`mx-auto max-w-lg transition-all duration-700 ease-in-out ${qrData && qrData.status === 'success' ? 'mt-6' : 'mt-10'}`}>
             <form className="flex items-center bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-200 rounded-full p-2 focus-within:ring-2 focus-within:ring-emerald-600/20 focus-within:border-emerald-400 transition-all">
               <input
                 type="text"
